@@ -1,27 +1,29 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const morgan = require('morgan');
-const mongoInit = require('./dbConnection/mongoConnection');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import morgan from 'morgan';
+import mongoInit from './dbConnection/mongoConnection';
+import healthRouter from './routes/healthRouter';
+
+
 const app = express();
 
 
-
+mongoInit();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 app.use(morgan('dev'));
 
 
-const port = process.env.PORT || 3000;
+app.use('/api',healthRouter)
 
-app.get('/',(req,res)=>{
-    res.status(200).json({message:"Hey Azim here!!, How may i help you ?"})
-})
+
+const port = process.env.PORT || 3000;
 
 app.listen(port,(err)=>{
     if(err){
         return res.status(404).json({message:"Server Error"})
     }
-    console.log(`Server is running on port :${port}`)
+    console.log(`Server is running on port : ${port}`)
 })
