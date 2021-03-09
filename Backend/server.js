@@ -1,15 +1,15 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import morgan from 'morgan';
-import mongoInit from './dbConnection/mongoConnection';
-import healthRouter from './routes/healthRouter';
-
+const express =require('express');
+const bodyParser =require('body-parser');
+const cors =require('cors');
+const morgan =require('morgan');
+const mongoInit =require('./dbConnection/mongoConnection');
+const healthRouter =require('./routes/healthRouter');
+const userRouter =require('./routes/userRoutes');
 
 const app = express();
-
-
 mongoInit();
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
@@ -17,6 +17,7 @@ app.use(morgan('dev'));
 
 
 app.use('/api',healthRouter)
+app.use('/api',userRouter)
 
 
 const port = process.env.PORT || 3000;
