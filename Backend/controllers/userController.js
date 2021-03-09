@@ -55,7 +55,6 @@ module.exports = {
         }
         try {
             const user = await User.findOne({email:req.body.email});
-            console.log(user)
             if(!user){
                 res.status(400).json({message:"User Not Registered 😩"})
             }
@@ -63,7 +62,7 @@ module.exports = {
             if(!matchPassword){
                 return res.status(422).json({message:"Incorrect email or password 😩"})
             }
-            jwt.sign(
+            const token = jwt.sign(
                 { user: { id: user.id } },
                 'jwt_secret',
                 (err, token)=>{
@@ -74,6 +73,17 @@ module.exports = {
                     return res.status(200).json({message:"User Logged in Successfully ✌️", data})
                 }
             )
+            res.cookie('c',token,{expire: new Date()+ 9999});
+        } catch (err) {
+            res.status(500).json({message:"Server error 🙏"});           
+        }
+    },
+
+    logout: async(req,res)=>{
+        try {
+            await res.clearCookie('c');
+            res.status(200).json({message:"User Logged out successfully ✌️"})
+
         } catch (err) {
             res.status(500).json({message:"Server error 🙏"});           
         }
