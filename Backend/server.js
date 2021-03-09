@@ -24,7 +24,7 @@ const port = process.env.PORT || 3000;
 
 app.listen(port,(err)=>{
     if(err){
-        return res.status(404).json({message:"Server Error"})
+        return res.status(404).json({message:"Server Error "})
     }
     console.log(`Server is running on port : ${port}`)
 })

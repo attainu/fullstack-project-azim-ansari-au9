@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 require('dotenv').config();
-//connecting database
+//connecting database 
 const mongoInit = async ()=>{
     try {
         await mongoose.connect("mongodb://localhost:27017/Stock_Market",

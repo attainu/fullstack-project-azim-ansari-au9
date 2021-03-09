@@ -1,5 +1,5 @@
 module.exports = {
-    health: async (req,res) => {
+    health : async (req,res) => {
         try {
             res.status(200).json({message:"Health is okey !! Cool 🤟"})
         } catch (err) {
