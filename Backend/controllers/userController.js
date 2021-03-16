@@ -87,8 +87,8 @@ module.exports = {
                 if(!user || err){
                     return res.status(400).json({message:"User not found "})
                 }
-                var azim = {userData:user}
-                return res.status(200).json({message:"User details Here !!", azim})
+                var userDetails = {userData:user}
+                return res.status(200).json({message:"User details Here !!", userDetails})
             })
         } catch (err) {
             res.status(500).json({message:"Server error 🙏"}); 
