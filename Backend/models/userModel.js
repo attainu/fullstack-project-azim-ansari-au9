@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    dob :{
+        type: String,
+        default:""
+    },
+    profilePic: {
+        type:String,
+        default:"https://ibb.co/P6C4JVX"
+    },
     status: { 
         type: String, 
         enum: ['Inactive', 'Active', 'Delete'], 

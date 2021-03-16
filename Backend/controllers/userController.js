@@ -2,6 +2,7 @@ const  bcrypt =  require('bcryptjs');
 const { check, validationResult }  = require('express-validator');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const mongoose = require('mongoose');
 
 module.exports = {
     signup:
@@ -76,6 +77,21 @@ module.exports = {
             res.cookie('c',token,{expire: new Date()+ 9999});
         } catch (err) {
             res.status(500).json({message:"Server error 🙏"});           
+        }
+    },
+    profile: async(req, res) => {
+        try {
+            const userId = req.user.id;
+            const userData = User.findOne({_id:mongoose.Types.ObjectId(userId)},{name:1, email:1, status:1,profilePic:1,dob:1})
+            userData.exec((err, user)=>{
+                if(!user || err){
+                    return res.status(400).json({message:"User not found "})
+                }
+                var azim = {userData:user}
+                return res.status(200).json({message:"User details Here !!", azim})
+            })
+        } catch (err) {
+            res.status(500).json({message:"Server error 🙏"}); 
         }
     },
 
