@@ -7,6 +7,7 @@ const healthRouter =require('./routes/healthRouter');
 const userRouter =require('./routes/userRoutes');
 var cookieParser = require('cookie-parser');
 const adminRouter = require('./routes/Admin/AdminRoutes');
+const mutualfundsRouter = require('./routes/mutualFundsRoutes')
 
 
 const app = express();
@@ -25,6 +26,9 @@ app.use('/api/admin',adminRouter)
 //user Routes
 app.use('/api',healthRouter)
 app.use('/api',userRouter)
+
+//mutual funds
+app.use('/api',mutualfundsRouter)
 
 
 const port = process.env.PORT || 3000;
