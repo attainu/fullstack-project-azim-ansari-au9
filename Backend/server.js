@@ -6,6 +6,7 @@ const mongoInit =require('./dbConnection/mongoConnection');
 const healthRouter =require('./routes/healthRouter');
 const userRouter =require('./routes/userRoutes');
 var cookieParser = require('cookie-parser');
+const adminRouter = require('./routes/Admin/AdminRoutes');
 
 
 const app = express();
@@ -16,9 +17,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 app.use(morgan('dev'));
-app.use(cookieParser())
+app.use(cookieParser());
 
+//admin Routes
+app.use('/api/admin',adminRouter)
 
+//user Routes
 app.use('/api',healthRouter)
 app.use('/api',userRouter)
 
