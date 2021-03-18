@@ -1,6 +1,8 @@
 const express = require('express');
 const adminController = require('../../controllers/Admin/AdminController');
 const { check, validationResult }  = require('express-validator');
+const middleWare = require('../../middleware/isAdmin');
+
 
 const router = express.Router();
 
@@ -12,6 +14,7 @@ router.post('/register', [
     check('password', 'Please enter the password.').isLength({ min: 6 })
 ],adminController.register);
 router.post('/login',adminController.login);
+router.get('/getAllUser',middleWare.isAdmin,adminController.getAllUsers)
 
 
 

@@ -2,6 +2,7 @@ const  bcrypt =  require('bcryptjs');
 const { check, validationResult }  = require('express-validator');
 const jwt = require('jsonwebtoken');
 const Admin = require('../../models/Admin/AdminModel');
+const User = require('../../models/userModel');
 const mongoose = require('mongoose');
 
 
@@ -76,6 +77,19 @@ module.exports = {
             res.cookie('c',token,{expire: new Date()+ 9999});
         } catch (err) {
             res.status(500).json({message:"Server error 🙏"});           
+        }
+    },
+    getAllUsers: async (req, res) => {
+        try {
+            await User.find().exec((err, data)=> {
+                if(err){
+                    res.status(400).json({message:"Internal server Error "})
+                }
+                return res.status(200).json({message:"Succesfully fetched ", data})
+            })
+        } catch (err) {
+            console.log("err",err)
+            res.status(500).json({message:"Server error 🙏"});  
         }
     }
 }

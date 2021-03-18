@@ -12,7 +12,7 @@ module.exports = {
             return res.status(422).json({ message: 'Parameter missing 😩', code: 422, errors: errors.array() })
             }
         try {
-            let {name, email, password, status} = req.body
+            let {name, email, password, status,dob} = req.body
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
             await User.findOne({email:email},(err,user)=>{
@@ -24,6 +24,7 @@ module.exports = {
                         name: name,
                         email: email,
                         password: hash,
+                        dob:dob,
                         status: status
                     }
                     let user = new User(userObj);
