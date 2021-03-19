@@ -80,5 +80,23 @@ module.exports = {
             console.log("err",err)
             res.status(500).json({message:"Server error 🙏"});  
         }
+    },
+    removeMutualFunds : async(req, res) => {
+        const Id = req.params.id;
+        await MutualFunds.findById(Id).exec((err,data) => {
+            console.log(data)
+            if(err) {
+                return res.status(400).json({message:"Internal Server Error 1 😢"})
+            }
+            data.remove((err) => {
+                if(err){
+                    return res.status(400).json({message:"Internal server error 2 😢"})
+                }
+                else {
+                    return res.status(200).json({message:"Succesfully Deleted ✌️"})
+                }
+            })
+            
+        })
     }
 }
