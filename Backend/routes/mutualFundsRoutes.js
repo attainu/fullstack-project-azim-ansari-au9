@@ -5,8 +5,8 @@ const router = express.Router();
 
 
 router.post('/createMutualFunds',middleware.isAdmin,mutualFundController.createMutualFunds)
+router.put('/updateMutalFunds/:id',middleware.isAdmin,mutualFundController.updateMutualFunds);
 router.get('/getMutualFunds', mutualFundController.getAllMutualFunds);
-router.put('/updateMutalFunds/:id',mutualFundController.updateMutualFunds);
 
 
 

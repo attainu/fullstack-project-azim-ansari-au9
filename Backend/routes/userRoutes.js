@@ -14,7 +14,7 @@ router.post('/signup', [
 ],userController.signup);
 router.get('/profile',middleware.isAuth,userController.profile)
 router.post('/login',userController.login);
-router.get('/logout',userController.logout);
+router.get('/logout',middleware.isAuth,userController.logout);
 
 
 module.exports = router;
