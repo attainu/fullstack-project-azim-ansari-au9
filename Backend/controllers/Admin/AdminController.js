@@ -79,13 +79,40 @@ module.exports = {
             res.status(500).json({message:"Server error 🙏"});           
         }
     },
+
+
+    editProfile : async(req, res) => {
+        try {
+            const userId = req.params.id;
+            const {name, dob, profilePic} = req.body
+            await User.findByIdAndUpdate((err,data) => {
+                if(err) {
+                    return res.status(400).json({message:"Internal error 1 😢"})
+                }
+                data.name = name;
+                data.dob = dob;
+                data.profilePic = profilePic;
+                data.save((err, result) => {
+                    if(err) {
+                        return res.status(400).json({message:"Internal error 2 😢"})
+                    } else {
+                        return res.status(200).json({message:"Successfully updated user details ✌️", result})
+                    }
+                })
+            })
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({message:"Server error 🙏"});      
+        }
+    },
+
     getAllUsers: async (req, res) => {
         try {
             await User.find().exec((err, data)=> {
                 if(err){
-                    res.status(400).json({message:"Internal server Error "})
+                    res.status(400).json({message:"Internal server Error 😢"})
                 }
-                return res.status(200).json({message:"Succesfully fetched ", data})
+                return res.status(200).json({message:"Succesfully fetched ✌️", data})
             })
         } catch (err) {
             console.log("err",err)

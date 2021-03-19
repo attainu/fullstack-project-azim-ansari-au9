@@ -15,6 +15,7 @@ router.post('/signup', [
 router.get('/profile',middleware.isAuth,userController.profile)
 router.post('/login',userController.login);
 router.get('/logout',middleware.isAuth,userController.logout);
+router.patch('/editProfile/:id',middleware.isAuth,userController.editProfile);
 
 
 module.exports = router;
