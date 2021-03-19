@@ -96,6 +96,52 @@ module.exports = {
         }
     },
     
+    changePassword: async(req, res) => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({
+                    message: 'Parameter missing', code: 422, errors: errors.array()
+                })
+            }
+            const userId = req.user.id
+            // console.log("useridf>>>>>",userId)
+            const { oldPassword, newPassword, confirmPassword } = req.body
+            if (newPassword == confirmPassword) {
+                await User.findOne({ _id: mongoose.Types.ObjectId(userId)}, async function (err, user) {
+                    if (err) {
+                       return res.status(400).json({message:"Internal Server Error "})                
+                    } else if (!user) {
+                        return res.status(404).json({message:"User Not Found "})                    
+                    } else {
+                        //console.log(user.password); return false;
+                        let compare = await bcrypt.compare(oldPassword, user.password);
+                        if (compare) {
+                            let hashedPassword = await bcrypt.hash(newPassword, 12);
+                            user.password = hashedPassword;
+                            user.save((err, newResult) =>{
+                                if (err) {
+                                    console.log(err) 
+                                    return res.status(400).json({message:"Internal error 2 "});                
+                                }
+                                else {
+                                    return res.status(200).json({message:"Password successfully Changed ", newResult});                
+                                }
+                            })
+                        } else {
+                            return res.status(400).json({message:"Invalid old password."}) ;                
+                        }
+                    }
+                });
+            } else {
+                return res.status(400).json({message:"Password and confirm password doesnot match."});                
+            }           
+        } catch (error) {
+            console.log(">>>>>>>", error)
+            return res.status(500).json({message:"Server  error "})                            
+        }
+    },
+
 
     editProfile : async(req, res) => {
         try {
@@ -123,6 +169,9 @@ module.exports = {
             res.status(500).json({message:"Server error 🙏"});      
         }
     },
+
+
+
 
     logout: async(req,res)=>{
         try {

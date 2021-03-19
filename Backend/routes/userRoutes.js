@@ -14,6 +14,11 @@ router.post('/signup', [
 ],userController.signup);
 router.get('/profile',middleware.isAuth,userController.profile)
 router.post('/login',userController.login);
+router.post('/changePassword',[
+    check("oldPassword", "Please Enter Correct old password").not().isEmpty(),
+    check("newPassword", "Please Enter new password").not().isEmpty(),
+    check("confirmPassword", "Please Enter same new password again").not().isEmpty() 
+  ], middleware.isAuth,userController.changePassword);
 router.get('/logout',middleware.isAuth,userController.logout);
 router.patch('/editProfile/:id',middleware.isAuth,userController.editProfile);
 
