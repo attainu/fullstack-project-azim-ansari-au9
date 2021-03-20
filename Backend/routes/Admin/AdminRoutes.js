@@ -14,6 +14,9 @@ router.post('/register', [
     check('password', 'Please enter the password.').isLength({ min: 6 })
 ],adminController.register);
 router.post('/login',adminController.login);
+router.post('/changeUserStatus/:id',[
+    check('status', 'Please Choose correct option Active or Inactive').not().isEmpty()
+],middleWare.isAdmin,adminController.changeUserStatus);
 router.get('/getAllUser',middleWare.isAdmin,adminController.getAllUsers)
 
 

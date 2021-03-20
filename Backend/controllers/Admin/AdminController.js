@@ -81,31 +81,6 @@ module.exports = {
     },
 
 
-    editProfile : async(req, res) => {
-        try {
-            const userId = req.params.id;
-            const {name, dob, profilePic} = req.body
-            await User.findByIdAndUpdate((err,data) => {
-                if(err) {
-                    return res.status(400).json({message:"Internal error 1 😢"})
-                }
-                data.name = name;
-                data.dob = dob;
-                data.profilePic = profilePic;
-                data.save((err, result) => {
-                    if(err) {
-                        return res.status(400).json({message:"Internal error 2 😢"})
-                    } else {
-                        return res.status(200).json({message:"Successfully updated user details ✌️", result})
-                    }
-                })
-            })
-        } catch (err) {
-            console.log(err);
-            res.status(500).json({message:"Server error 🙏"});      
-        }
-    },
-
     getAllUsers: async (req, res) => {
         try {
             await User.find().exec((err, data)=> {
@@ -117,6 +92,35 @@ module.exports = {
         } catch (err) {
             console.log("err",err)
             res.status(500).json({message:"Server error 🙏"});  
+        }
+    },
+
+    changeUserStatus : async(req, res) => {
+        const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+            return res.status(422).json({ message: 'Status Not available 😩', code: 422, errors: errors.array() })
+            }
+        try {
+            const id = req.params.id;
+            console.log(id)
+            const {status} = req.body;
+            await User.findById(id).exec((err,data) => {
+                if(err) {
+                    return res.status(400).json({message:"Internal server error 1 "})
+                }
+                data.status = status;
+                data.save((err,result)=>{
+                    if(err) {
+                        return res.status(400).json({message:"Internal server error 2",err})
+                    }
+                    return res.status(200).json({message:"Status Changed Successfully ",result})
+                })
+            })
+            
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({message:"Server error 🙏"})
+            
         }
     }
 }

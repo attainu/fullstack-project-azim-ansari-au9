@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     },
     status: { 
         type: String, 
-        enum: ['Inactive', 'Active', 'Delete'], 
+        enum: ['Inactive', 'Active'], 
         default: 'Active' 
     },
     createdDate: {
