@@ -106,14 +106,14 @@ module.exports = {
             const {status} = req.body;
             await User.findById(id).exec((err,data) => {
                 if(err) {
-                    return res.status(400).json({message:"Internal server error 1 "})
+                    return res.status(400).json({message:"Internal server error 1 😢"})
                 }
                 data.status = status;
                 data.save((err,result)=>{
                     if(err) {
-                        return res.status(400).json({message:"Internal server error 2",err})
+                        return res.status(400).json({message:"Internal server error 2 😢",err})
                     }
-                    return res.status(200).json({message:"Status Changed Successfully ",result})
+                    return res.status(200).json({message:"Status Changed Successfully ✌️",result})
                 })
             })
             
