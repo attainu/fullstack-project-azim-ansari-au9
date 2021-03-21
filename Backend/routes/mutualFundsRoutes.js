@@ -9,6 +9,7 @@ router.put('/updateMutalFunds/:id',middleware.isAdmin,mutualFundController.updat
 router.delete('/removeMutualFund/:id',middleware.isAdmin,mutualFundController.removeMutualFunds);
 router.get('/getMutualFunds', mutualFundController.getAllMutualFunds);
 router.get('/singleMutualFund/:id', mutualFundController.getSingleMutualFunds);
+router.get('/searchMutualFunds', mutualFundController.customSearch);
 
 
 

@@ -97,6 +97,29 @@ module.exports = {
             res.status(500).json({message:"Server error 🙏"});  
         }
     },
+
+
+    //Custom Search
+    customSearch : async(req, res) => {
+        const { Mutual_Fund_Family, Scheme_Category, Scheme_Name, Scheme_Type, Scheme_Code, numberOfResults} = req.body;
+        try {
+        const customFunds = await MutualFunds.find({   
+            $or: [
+                { Mutual_Fund_Family},
+                { Scheme_Category},
+                { Scheme_Name},
+                { Scheme_Type},
+                { Scheme_Code},
+                ]
+            }).limit(numberOfResults);
+        res.status(200).json({ message: "request successfull", fundDetails: customFunds });
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({ success: false, error: "Server Error" });
+        }
+    },
+
+
     removeMutualFunds : async(req, res) => {
         const Id = req.params.id;
         await MutualFunds.findById(Id).exec((err,data) => {
