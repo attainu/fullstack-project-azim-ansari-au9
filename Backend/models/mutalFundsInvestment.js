@@ -6,42 +6,38 @@ const mutualFundsInvestmentSchema =  new Schema({
             type: Schema.Types.ObjectId,
             ref: "User"//refering user database
         },
-        Investments: [//making array of object for MF schemes
-            {
-            MfId: {
-                type: Schema.Types.ObjectId,
-                ref: 'MutualFunds'
-                },
-            SchemeId:{
-                type:String,
-                required: true,
-                trim: true
+        MFId: {
+            type: Schema.Types.ObjectId,
+            ref: 'MutualFunds'
             },
-            SchmeName: {
-                type: String,
-                required: true,
-                trim: true
-            },
-            UnitsBought:{
-                type:Number,
-                default: 0,
-                required: true,
-                trim: true
-            },
-            Nav:{
-                type:Number,
-                default: 0,
-                required: true,
-                trim: true
-            },
-            AmountInvested: {
-                type: Number,
-                default: 0,
-                required: true,
-                trim: true
-            },
-            }
-        ]
+        // SchemeId:{
+        //     type:String,
+        //     // required: true,
+        //     trim: true
+        // },
+        // SchmeName: {
+        //     type: String,
+        //     required: true,
+        //     trim: true
+        // },
+        UnitsBought:{
+            type:Number,
+            default: 0,
+            required: true,
+            trim: true
+        },
+        Nav:{
+            type:Number,
+            default: 0,
+            required: true,
+            trim: true
+        },
+        AmountInvested: {
+            type: Number,
+            default: 0,
+            required: true,
+            trim: true
+        }
     })
 
 

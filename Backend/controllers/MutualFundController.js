@@ -115,7 +115,7 @@ module.exports = {
         res.status(200).json({ message: "request successfull", fundDetails: customFunds });
         } catch (err) {
             console.log(err)
-            res.status(500).json({ success: false, error: "Server Error" });
+            res.status(500).json({message: "Server Error" });
         }
     },
 
@@ -123,7 +123,7 @@ module.exports = {
     removeMutualFunds : async(req, res) => {
         const Id = req.params.id;
         await MutualFunds.findById(Id).exec((err,data) => {
-            console.log(data)
+            // console.log(data)
             if(err) {
                 return res.status(400).json({message:"Internal Server Error 1 😢"})
             }

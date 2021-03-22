@@ -1,6 +1,8 @@
 const express = require('express');
+const mutualFundsInvestment = require('../controllerS/MutualFundsInvestmentsContrroler');
 const mutualFundController = require('../controllers/MutualFundController');
 const middleware = require('../middleware/isAdmin')
+const authMiddleware = require('../middleware/isAuth')
 const router = express.Router();
 
 
@@ -10,6 +12,10 @@ router.delete('/removeMutualFund/:id',middleware.isAdmin,mutualFundController.re
 router.get('/getMutualFunds', mutualFundController.getAllMutualFunds);
 router.get('/singleMutualFund/:id', mutualFundController.getSingleMutualFunds);
 router.get('/searchMutualFunds', mutualFundController.customSearch);
+
+//investment mutualFunds
+router.post('/investment',authMiddleware.isAuth,mutualFundsInvestment.addMutualFundsInvestment)
+router.get('/investmentDetals',authMiddleware.isAuth, mutualFundsInvestment.getInvestmentDetails);
 
 
 
