@@ -5,7 +5,7 @@ const middleware = require('../middleware/isAdmin')
 const authMiddleware = require('../middleware/isAuth')
 const router = express.Router();
 
-
+//mutual funds
 router.post('/createMutualFunds',middleware.isAdmin,mutualFundController.createMutualFunds)
 router.put('/updateMutalFunds/:id',middleware.isAdmin,mutualFundController.updateMutualFunds);
 router.delete('/removeMutualFund/:id',middleware.isAdmin,mutualFundController.removeMutualFunds);
@@ -15,7 +15,7 @@ router.get('/searchMutualFunds', mutualFundController.customSearch);
 
 //investment mutualFunds
 router.post('/investment',authMiddleware.isAuth,mutualFundsInvestment.addMutualFundsInvestment)
-router.get('/investmentDetals',authMiddleware.isAuth, mutualFundsInvestment.getInvestmentDetails);
+router.get('/userInvestmentDetals',authMiddleware.isAuth, mutualFundsInvestment.getInvestmentDetails);
 
 
 
