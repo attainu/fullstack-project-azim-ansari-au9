@@ -21,8 +21,8 @@ module.exports = {
                 userId: InvestedUser,
                 MFId: MFId
             })
-            console.log(investment)
-            console.log(investment.AmountInvested,"sbdhfdsh")
+            // console.log(investment)
+            // console.log(investment.AmountInvested,"sbdhfdsh")
             investment.save((err, data)=>{
                 if(err){
                     console.log(err)
@@ -40,9 +40,8 @@ module.exports = {
     getInvestmentDetails: async( req, res) => {
         try {
             const userId = req.user.id;
-            const MFId = req.body
-            const investment = await MutualFundsInvestment.find({userId}).exec((err,data)=> {
-                // console.log(investment)
+
+            const investment = await MutualFundsInvestment.find({userId},{_id:0}).exec((err,data)=> {
                 if(err){
                     return res.status(400).json({message:"Internal server error"})
                 } 
@@ -55,6 +54,24 @@ module.exports = {
             console.log(err);
             return res.status(500).json({message:"Server Error "})
         }
+    },
+
+    getMFlogs : async(req, res) => {
+        const userId = req.user.id;
+        await MutualFundsInvestment.find({userId},{_id:0,Nav:0}).exec((err,data)=>{
+            console.log(data[1].userId)
+            if(err){
+                return res.status(400).json({message:"Internal server error"})
+            } else {
+                if(data.UnitsBought ==0){
+                    return res.status(400).json({message:"zero mf invested"})
+                } else {
+                    const totalunit = data.UnitsBought
+                    console.log(totalunit)
+                    return res.status(201).json({message:`${totalunit} any mf is added`,totalunit,data})
+                }
+            }
+        })
     }
 }
 

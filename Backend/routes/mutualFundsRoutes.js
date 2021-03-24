@@ -16,6 +16,7 @@ router.get('/searchMutualFunds', mutualFundController.customSearch);
 //investment mutualFunds
 router.post('/investment',authMiddleware.isAuth,mutualFundsInvestment.addMutualFundsInvestment)
 router.get('/userInvestmentDetals',authMiddleware.isAuth, mutualFundsInvestment.getInvestmentDetails);
+router.get('/particularUserInvestmentDetals',authMiddleware.isAuth, mutualFundsInvestment.getMFlogs);
 
 
 
