@@ -41,4 +41,9 @@ body {
   #login .container #login-row #login-column .login-box #login-form #register-link {
     margin-top: -85px;
   }
+.border{
+    border: 0px solid black;
+    border-radius: 40px;
+    padding: 20px;
+}
 /*************End Login page************/

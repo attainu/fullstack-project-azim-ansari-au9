@@ -2,7 +2,7 @@ import React from "react";
 
 const Login =() => {
   return (
-    <div className="container">
+    <div className="container mt-5 border">
         <div id="login-row" className="row justify-content-center align-items-center">
             <div id="login-column" className="col-md-6">
                 <div className="login-box col-md-12">
