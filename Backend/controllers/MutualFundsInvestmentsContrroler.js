@@ -1,8 +1,5 @@
-const { json } = require('body-parser');
 const Mongoose  = require('mongoose');
-const mutalFundsInvestment = require('../models/mutalFundsInvestment');
 const MutualFundsInvestment = require('../models/mutalFundsInvestment');
-// const mutualFund = require('../models/mutualFund');
 const {ObjectID} = require('mongodb')
 
 
@@ -92,6 +89,7 @@ module.exports = {
             }
         })    
         } catch (error) {
+            console.log(err)
             res.status(500).json({message:"Server error 🙏"})
         }    
     }

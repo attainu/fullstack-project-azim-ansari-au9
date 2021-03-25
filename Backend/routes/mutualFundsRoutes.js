@@ -1,5 +1,5 @@
 const express = require('express');
-const mutualFundsInvestment = require('../controllerS/MutualFundsInvestmentsContrroler');
+const mutualFundsInvestment = require('../controllers/MutualFundsInvestmentsContrroler');
 const mutualFundController = require('../controllers/MutualFundController');
 const middleware = require('../middleware/isAdmin')
 const authMiddleware = require('../middleware/isAuth')

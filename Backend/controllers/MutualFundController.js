@@ -1,4 +1,4 @@
-const MutualFunds = require('../models/MutualFund')
+const MutualFunds = require('../models/mutualFund')
 
 module.exports = {
     createMutualFunds: async(req, res) => {
