@@ -112,10 +112,10 @@ module.exports = {
                 { Scheme_Code},
                 ]
             }).limit(numberOfResults);
-        res.status(200).json({ message: "request successfull", fundDetails: customFunds });
+        res.status(200).json({ message: "request successfull ✌️", fundDetails: customFunds });
         } catch (err) {
             console.log(err)
-            res.status(500).json({message: "Server Error" });
+            res.status(500).json({message: "Server Error 🙏" });
         }
     },
 

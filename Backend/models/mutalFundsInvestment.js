@@ -10,16 +10,6 @@ const mutualFundsInvestmentSchema =  new Schema({
             type: Schema.Types.ObjectId,
             ref: 'MutualFunds'
             },
-        // SchemeId:{
-        //     type:String,
-        //     // required: true,
-        //     trim: true
-        // },
-        // SchmeName: {
-        //     type: String,
-        //     required: true,
-        //     trim: true
-        // },
         UnitsBought:{
             type:Number,
             default: 0,
