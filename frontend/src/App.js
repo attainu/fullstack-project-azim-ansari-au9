@@ -1,10 +1,11 @@
+import AdminRoutes  from '../src/AdminPanel/Routes';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Stock Market Web App</h1>
-    </div>
+    <>
+      <AdminRoutes />
+    </>
   );
 }
 

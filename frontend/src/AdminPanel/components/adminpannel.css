@@ -1,0 +1,44 @@
+/*HOME PAGE CSS*/
+.home{
+    background-color: whitesmoke;
+    background-image: url('./images/mutualfunds.jpg');
+    height: 705px ;
+    color: rgba(255, 255, 255, 0.904);
+    font-family:Comic Sans MS, Comic Sans, cursive;
+    padding: 20px;
+}
+.navbar{
+    background-color: #000000;
+    color: rgb(252, 252, 252);
+}
+.navbar .collapse .navbar-nav .nav-item .nav-link{
+    color: rgb(250, 250, 250);
+    font-size: 22px;
+    font-family: URW Chancery L, cursive;
+}
+.collapse navbar-collapse{
+    color: white;
+}
+/*****END******/
+/************Login page************/
+
+body {
+    height: 100vh;
+    font-family:Comic Sans MS, Comic Sans, cursive;
+    /* background-color: black; */
+    /* color: white; */
+  }
+  #login .container #login-row #login-column .login-box {
+    margin-top: 120px;
+    max-width: 600px;
+    height: 320px;
+    border: 1px solid black;
+    /* color: black; */
+  }
+  #login .container #login-row #login-column .login-box #login-form {
+    padding: 20px;
+  }
+  #login .container #login-row #login-column .login-box #login-form #register-link {
+    margin-top: -85px;
+  }
+/*************End Login page************/
