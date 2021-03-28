@@ -1,34 +1,100 @@
-import React from "react";
+import {useState} from 'react';
+import { Redirect} from 'react-router-dom';
+import {authenticate, login} from './auth/index';
 
-const Login =() => {
-  return (
-    <div className="container mt-5 border">
-        <div id="login-row" className="row justify-content-center align-items-center">
-            <div id="login-column" className="col-md-6">
-                <div className="login-box col-md-12">
-                    <form id="login-form" className="form" action="" method="post">
-                        <h3 className="text-center text-black">Admin Login</h3>
-                        <div className="form-group">
-                            <label htmlFor="email" className="text-black">Admin email:</label><br />
-                            <input type="text" name="email" id="email" className="form-control" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password" className="text-black">Password:</label><br />
-                            <input type="text" name="password" id="password" className="form-control" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="remember-me" className="text-black"><span>Remember me</span> 
-                            <span><input id="remember-me" name="remember-me" type="checkbox" /></span></label><br />
-                            <center>
-                            <input type="submit" name="submit" className="btn center" value="submit" />
-                            </center>
-                        </div>
-                    </form>
-                </div>
+
+const Login = () => {
+
+    const [values, setValue] = useState({
+        email:"admin@gmail.com",
+        password:"123456",
+        error:"",
+        loading:false,
+        redirectToReferrer: false,
+    })
+
+    const {email, password, loading, error, redirectToReferrer} = values;
+
+    const handleChange = name =>event=> {
+        event.preventDefault();
+        setValue({...values, error: false,[name]: event.target.value })
+    };
+    const clickSubmit = event =>{
+        event.preventDefault();
+        setValue({...values, error: false, loading: true});
+        login({email, password}).then(data=>{
+            console.log(data)
+            if(data.error) {
+                setValue({...values, error: data.error, loading: false,redirectToReferrer: false});
+
+            } else{
+                authenticate(
+                    data,()=>{
+                        setValue({
+                            ...values,
+                            redirectToReferrer: true
+                        })
+                    }
+                )
+            }
+        })
+    }
+
+    const loginForm =() => (
+        <form>
+            <center>
+            <div className="form=group col-md-6">
+                <label className="text-muted">email</label>
+                <input required onChange={handleChange("email")} type="email"
+                    className="form-control"
+                    value={email} 
+                    />
             </div>
+            <div className="form=group col-md-6">
+                <label className="text-muted">Password</label>
+                <input required onChange={handleChange("password")} type="password"
+                    className="form-control"
+                    value={password} required
+                    />
+            </div>
+            <button onClick={clickSubmit} className="btn btn-primary">
+                Login 
+            </button>
+
+            </center>
+        </form>
+    );
+
+    const showError =() => (
+        <div className="alert alert-danger"
+        style={{display: error? "" : "none"}} >
+            {error}
         </div>
-    </div>
-  );
+    )
+    
+    const showLoading =() => (
+        loading && (
+            <div className="alert alert-info">
+                <h2>loading...</h2>
+            </div>
+        )
+    )
+
+    const redirectAdmin = () => {
+        if(redirectToReferrer) {
+            return <Redirect to='/' />
+        }
+    }
+
+    return(
+        <div>
+            <h2>login</h2>
+            {showError()}
+            {showLoading()}
+            {loginForm()}
+            {redirectAdmin()}
+        </div>
+    )
 }
 
 export default Login;

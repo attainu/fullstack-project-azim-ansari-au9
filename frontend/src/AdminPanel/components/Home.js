@@ -1,6 +1,5 @@
 import React from 'react';
 import './adminpannel.css';
-
 const Home = () => {
     return (
         <div className="home text-center">

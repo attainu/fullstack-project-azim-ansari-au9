@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect ,useHistory} from "react-router-dom";
 import './adminpannel.css';
 import logo from './images/logo.png'
-
+import {logout, isAuthenticated} from '../components/auth/index';
 
 const Navbar = () => {
+  let history = useHistory();
   return (
     <>
     <div className="navb">
@@ -31,11 +32,39 @@ const Navbar = () => {
                 UserList
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
+            {/* {!isAuthenticated ?  
+              <div>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+              </div> 
+              : 
+              <li className="nav-item" >
+              <span className="nav-link" style={{cursor: 'pointer',color: "white"}}
+              onClick={()=>logout(()=>{
+                history.push('/')
+                // Redirect('/')
+              })}>
+                logout
+              </span>
             </li>
+              } */}
+                  <li className="nav-item">
+                   <Link className="nav-link" to="/login">
+                    Login
+                </Link>
+            </li>
+            <li className="nav-item" >
+            <span className="nav-link" style={{cursor: 'pointer',color: "white"}}
+              onClick={()=>logout(()=>{
+                history.push('/')
+                // Redirect('/')
+              })}>
+                logout
+              </span>
+            </li> 
           </ul>
         </div>
       </nav>

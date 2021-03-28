@@ -5,15 +5,16 @@ import CreateMutualFunds from './components/CreateMutualFunds';
 import Home from './components/Home';
 import Login from './components/Login';
 import UserList from './components/UserList';
+import PrivateRoutes from './components/auth/PrivatRoutes';
 
 const AdminRoutes =( ) => {
     return (
-        <Router>
+        <Router >
             <Navbar />
             <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/userlist' component={UserList} />
-                <Route exact path='/mutualfunds' component={CreateMutualFunds} />
+                <PrivateRoutes exact path='/' component={Home} />
+                <PrivateRoutes exact path='/userlist' component={UserList} />
+                <PrivateRoutes exact path='/mutualfunds' component={CreateMutualFunds} />
                 <Route exact path='/login' component={Login} />
             </Switch>
         </Router>
