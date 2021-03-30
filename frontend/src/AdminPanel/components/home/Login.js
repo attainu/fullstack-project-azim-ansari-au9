@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { Redirect} from 'react-router-dom';
-import {authenticate, login} from './auth/index';
+import {authenticate, login} from '../auth/index';
 
 
 const Login = () => {
@@ -24,10 +24,10 @@ const Login = () => {
         setValue({...values, error: false, loading: true});
         login({email, password}).then(data=>{
             console.log(data)
-            if(data.error) {
-                setValue({...values, error: data.error, loading: false,redirectToReferrer: false});
-
-            } else{
+            if(data.errorCode !== 200) {
+                setValue({...values, error: data.message, loading: false,redirectToReferrer: false});
+            } 
+            else{
                 authenticate(
                     data,()=>{
                         setValue({
@@ -41,28 +41,24 @@ const Login = () => {
     }
 
     const loginForm =() => (
-        <form>
-            <center>
-            <div className="form=group col-md-6">
-                <label className="text-muted">email</label>
-                <input required onChange={handleChange("email")} type="email"
-                    className="form-control"
-                    value={email} 
-                    />
-            </div>
-            <div className="form=group col-md-6">
-                <label className="text-muted">Password</label>
-                <input required onChange={handleChange("password")} type="password"
-                    className="form-control"
-                    value={password} required
-                    />
-            </div>
-            <button onClick={clickSubmit} className="btn btn-primary">
-                Login 
-            </button>
-
-            </center>
-        </form>
+        <div className="wrapper">
+            <form className="form-signin">       
+            <h2 className="form-signin-heading" style={{color:"black"}}>Admin Please login</h2><br />
+            <input type="email" className="form-control" name="email" 
+                placeholder="Email Address" required 
+                onChange={handleChange("email")} 
+                autofocus="" 
+                value={email}/>
+            <input type="password" className="form-control" name="password" 
+                placeholder="Password" required  
+                onChange={handleChange("password")} 
+                value={password} />      
+            <label className="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
+            </label>
+            <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={clickSubmit} >Login</button>   
+            </form>
+        </div>
     );
 
     const showError =() => (
@@ -88,7 +84,6 @@ const Login = () => {
 
     return(
         <div>
-            <h2>login</h2>
             {showError()}
             {showLoading()}
             {loginForm()}

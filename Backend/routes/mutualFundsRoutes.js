@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/createMutualFunds',middleware.isAdmin,mutualFundController.createMutualFunds)
 router.put('/updateMutalFunds/:id',middleware.isAdmin,mutualFundController.updateMutualFunds);
 router.delete('/removeMutualFund/:id',middleware.isAdmin,mutualFundController.removeMutualFunds);
-router.get('/getMutualFunds', mutualFundController.getAllMutualFunds);
+router.get('/getMutualFunds', middleware.isAdmin, mutualFundController.getAllMutualFunds);
 router.get('/singleMutualFund/:id', mutualFundController.getSingleMutualFunds);
 router.get('/searchMutualFunds', mutualFundController.customSearch);
 

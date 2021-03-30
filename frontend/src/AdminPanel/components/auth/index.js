@@ -24,8 +24,9 @@ export const login = admin => {
 
 
 export const authenticate = (data, next) => {
+    console.log(data)
     if(typeof window !== 'undefined') {
-        localStorage.setItem('token', JSON.stringify(data.data.token))
+        localStorage.setItem('token', data.data.token)
         next();
     }
 }
@@ -47,7 +48,7 @@ export const isAuthenticated = () => {
         return false
     }
     if(localStorage.getItem('token')) {
-        return JSON.parse(localStorage.getItem('token'))
+        return true
     } else {
         return false
     }
