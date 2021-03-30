@@ -13,7 +13,6 @@ export const login = admin => {
         body: JSON.stringify(admin)
     })
     .then(response => {
-        // console.log(response)
         return response.json();
     })
     .catch(err => {

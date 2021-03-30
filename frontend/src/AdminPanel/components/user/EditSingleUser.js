@@ -1,5 +1,4 @@
 import React ,{useEffect, useState} from 'react';
-import DatePicker from 'react-datepicker';
 
 // useEffect(async()=>{
 //     const id = await props.match.params.id;
@@ -30,10 +29,6 @@ const EditSingleUser = (props) => {
 
 
 
-
-
-
-
     return (
         <div>
             <div className="signup-form">
@@ -42,7 +37,7 @@ const EditSingleUser = (props) => {
                         </center>
                     <form action="" method="post" className="form-horizontal"/* onSubmit={this.submitHandler}*/>
                         <div className="col-xs-8 col-xs-offset-4">
-                            <h2>Create Mutual Funds</h2>
+                            <h2>User Edit profile</h2>
                         </div>		
                         <div className="form-group">
                             <label className="control-label col-xs-4">name</label>

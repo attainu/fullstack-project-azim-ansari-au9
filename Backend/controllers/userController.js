@@ -158,12 +158,17 @@ module.exports = {
                 if(err) {
                     return res.status(400).json({message:"Internal error 1 😢"})
                 }
+                if(name)
                 data.name = name;
+                if(dob)
                 data.dob = dob;
+                if(profilePic)
                 data.profilePic = profilePic;
+                if(status)
                 data.status = status;
                 data.save((err, result) => {
                     if(err) {
+                        // console.log("object",err )
                         return res.status(400).json({message:"Internal error 2 😢"})
                     } else {
                         return res.status(200).json({message:"Successfully updated user details ✌️", result})

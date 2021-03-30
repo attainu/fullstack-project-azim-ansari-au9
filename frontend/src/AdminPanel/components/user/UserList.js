@@ -37,63 +37,31 @@ const UserList = () => {
                 </div> 
                 <div className="member-details"> 
                     <div className="row info-list col-md-12"> 
-                        <li className="col-sm-2"> 
+                        <li key={user.id} className="col-sm-2"> 
                             <h5> name </h5> 
-                            <h6 key={user.id}>{user.name}</h6>
+                            <h6>{user.name}</h6>
                         </li> 
-                        <li className="col-sm-3">
+                        <li key={user.id} className="col-sm-3">
                             <h5>email</h5>
-                            <h6 key={user.id}>{user.email}</h6> 
+                            <h6>{user.email}</h6> 
                         </li> 
-                        <li className="col-sm-3"> 
+                        <li key={user.id} className="col-sm-3"> 
                             <h5>dob</h5> 
-                            <h6 key={user.id}>{user.dob}</h6> 
+                            <h6>{user.dob}</h6> 
                         </li> 
-                        <li className="col-sm-2"> 
+                        <li key={user.id} className="col-sm-2"> 
                             <h5>Status</h5> 
-                            <h6 key={user.id}>{user.status}</h6>
+                            <h6>{user.status}</h6>
                             <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                     Change 
                             </button>
                         </li> 
-                        <li className="col-sm-2"> 
+                        <li key={user.id} className="col-sm-2"> 
                             <h5>View Profile</h5> 
                             
                             <button type="button" className="btn" ><h6><i className="far fa-eye"></i></h6>
                             </button>
                         </li> 
-                        {/* <!-- Modal --> */}
-                        <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div className="modal-dialog modal-dialog-centered" role="document">
-                            <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLongTitle">Edit Status</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                                    <label className="form-check-label" for="flexRadioDefault1">
-                                        Active
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                                    <label className="form-check-label" for="flexRadioDefault1">
-                                        Inctive
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        
                     </div> 
                 </div> 
         </li>

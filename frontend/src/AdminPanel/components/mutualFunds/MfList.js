@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
+import {Link} from 'react-router-dom';
 import '../adminpannel.css';
 
 
@@ -28,7 +29,9 @@ const MfList = () => {
 
     const displayData = mutualFunds.slice(pageVisited,pageVisited+mfPerPage)
     .map(mutualFunds=>{
+        // console.log(mutualFunds._id)
         return(
+        <Link to={`/updateMf/${mutualFunds._id}`}>
         <div className="row md-2">
             <div className="col-md-11">
                 <div className="offer offer-success">
@@ -53,8 +56,9 @@ const MfList = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        )})
+        </div></Link>
+        )
+        })
 
         const pageCount = Math.ceil(mutualFunds.length/mfPerPage);
 
@@ -68,6 +72,7 @@ const MfList = () => {
             <center><h1 style={{width:"100vh",color:"red"}}>List of all MutualFunds</h1></center><hr style={{width:"100vh",color:"red",height:"2px"}}/>
             <ul className="item" style={{listStyle:"none"}}>
             {displayData} 
+
             <ReactPaginate
                 previousLabel={"Previous"} 
                 nextLabel={"Next"}

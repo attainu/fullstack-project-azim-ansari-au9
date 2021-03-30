@@ -72,16 +72,24 @@ module.exports = {
         try {
             const mutualFundsId = req.params.id;
             const {Mutual_Fund_Family, Scheme_Category,Scheme_Name,Scheme_Type,Scheme_Code,Net_Asset_Value}  =  req.body;
-            await MutualFunds.findByIdAndUpdate(mutualFundsId).exec((err, data) => {
+            const mfData = MutualFunds.findOne({_id:mutualFundsId},{new:true})
+            // console.log(mfData,"sdhsjbhf>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            await mfData.exec((err, data) => {
+                // console.log("data",data)
                 if(err) {
                     return res.status(400).json({message:"Internal Server error 1 😢"})
                 } 
-                // console.log(data)
+                if(Mutual_Fund_Family)
                 data.Mutual_Fund_Family = Mutual_Fund_Family;
+                if(Scheme_Category)
                 data.Scheme_Category = Scheme_Category;
+                if(Scheme_Name)
                 data.Scheme_Name = Scheme_Name;
+                if(Scheme_Type)
                 data.Scheme_Type = Scheme_Type;
+                if(Scheme_Code)
                 data.Scheme_Code = Scheme_Code;
+                if(Net_Asset_Value)
                 data.Net_Asset_Value = Net_Asset_Value;
                 data.save((err,result) => {
                     if(err) {
