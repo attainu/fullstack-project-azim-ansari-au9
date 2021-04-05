@@ -1,11 +1,13 @@
-import AdminRoutes  from '../src/AdminPanel/Routes';
 import './App.css';
+import AdminRoutes  from './components/Routes';
+// import UserRoutes from './UserPannel/Routes/UserRoutes';
 
 
 function App() {
   return (
     <>
       <AdminRoutes />
+      {/* <UserRoutes /> */}
     </>
   );
 }

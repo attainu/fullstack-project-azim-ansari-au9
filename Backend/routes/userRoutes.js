@@ -2,8 +2,34 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const { check, validationResult }  = require('express-validator');
 const middleware = require('../middleware/isAuth');
-
+const multer = require('multer')
 const router = express.Router();
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname)
+  }
+});
+const fileFilter = (req, file, cb) => {
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+// image path
+// limit: 5mb
+// filter : png, jpeg,jpg
+var upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
 
 router.post('/signup', [
@@ -21,6 +47,7 @@ router.post('/changePassword',[
   ], middleware.isAuth,userController.changePassword);
 router.get('/logout',middleware.isAuth,userController.logout);
 router.patch('/editProfile/:id',middleware.isAuth,userController.editProfile);
+router.put('/change-profile-pic',upload.single('profilePic'), middleware.isAuth,userController.cahngeProfilePic);
 
 
 module.exports = router;

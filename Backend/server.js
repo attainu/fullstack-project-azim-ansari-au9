@@ -8,6 +8,7 @@ const userRouter =require('./routes/userRoutes');
 var cookieParser = require('cookie-parser');
 const adminRouter = require('./routes/Admin/AdminRoutes');
 const mutualfundsRouter = require('./routes/mutualFundsRoutes')
+const path = require('path')
 
 const app = express();
 mongoInit();
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use('/uploads' , express.static(path.join(__dirname, 'public/uploads')));
 
 //admin Routes
 app.use('/api/admin',adminRouter)

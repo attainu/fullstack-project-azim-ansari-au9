@@ -9,14 +9,8 @@ const mutualFundsInvestmentSchema =  new Schema({
         MFId: {
             type: Schema.Types.ObjectId,
             ref: 'MutualFunds'
-            },
-        UnitsBought:{
-            type:Number,
-            default: 0,
-            required: true,
-            trim: true
         },
-        Nav:{
+        UnitsBought:{
             type:Number,
             default: 0,
             required: true,

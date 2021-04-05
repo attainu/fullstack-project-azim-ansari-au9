@@ -18,6 +18,7 @@ router.post('/changeUserStatus/:id',[
     check('status', 'Please Choose correct option Active or Inactive').not().isEmpty()
 ],middleWare.isAdmin,adminController.changeUserStatus);
 router.get('/getAllUser',adminController.getAllUsers);
+router.put('/editprofile/:id',adminController.editPersonalProfile);
 router.get('/getSingleUser/:id',middleWare.isAdmin,adminController.personalProfile);
 router.get('/logout',middleWare.isAdmin,adminController.logout)
 

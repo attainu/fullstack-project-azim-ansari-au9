@@ -58,7 +58,7 @@ module.exports = {
         try {
             const admin = await Admin.findOne({email:req.body.email});
             if(!admin){
-                return res.status(404).json({message:"Admin Not Registered 😩",errorCode: 400,})
+                return res.status(404).json({message:"Admin Not Registered 😩",errorCode: 404,})
             }
             const matchPassword = await bcrypt.compare(req.body.password,admin.password);
             if(!matchPassword){
@@ -115,6 +115,36 @@ module.exports = {
                     return res.status(400).json({message:"User not found 😩"})
                 }
                 return res.status(200).json({message:"User details Here ✌️!!", userData})
+            })
+        } catch (err) {
+            res.status(500).json({message:"Server error 🙏"}); 
+        }
+    },
+    editPersonalProfile: async(req, res) => {
+        try {
+            const userId = req.params.id;
+            const {name, dob, profilePic, status} = req.body;
+            await User.findOne({_id:mongoose.Types.ObjectId(userId)},{name:1, email:1, status:1,profilePic:1,dob:1})
+            .exec((err, data)=>{
+                if(err) {
+                    return res.status(400).json({message:"Internal error 1 😢"})
+                }
+                if(name)
+                data.name = name;
+                if(dob)
+                data.dob = dob;
+                if(profilePic)
+                data.profilePic = profilePic;
+                if(status)
+                data.status = status;
+                data.save((err, result) => {
+                    if(err) {
+                        // console.log("object",err )
+                        return res.status(400).json({message:"Internal error 2 😢"})
+                    } else {
+                        return res.status(200).json({message:"Successfully updated user details ✌️", result})
+                    }
+                })
             })
         } catch (err) {
             res.status(500).json({message:"Server error 🙏"}); 

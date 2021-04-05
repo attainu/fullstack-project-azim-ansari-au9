@@ -9,7 +9,7 @@ module.exports = {
     async(req,res)=>{
         const errors = validationResult(req);
             if (!errors.isEmpty()) {
-            return res.status(422).json({ message: 'Parameter missing 😩', code: 422, errors: errors.array() })
+            return res.status(422).json({ message: 'Parameter missing 😩', errors: errors.array(),errorCode:422 })
             }
         try {
             let {name, email, password, status,dob} = req.body
@@ -17,7 +17,7 @@ module.exports = {
             const hash = bcrypt.hashSync(password, salt);
             await User.findOne({email:email},(err,user)=>{
                 if(err){
-                    return res.status(500).json({message:"Internal server error 😢"})
+                    return res.status(500).json({message:"Internal server error 😢",errorCode:500})
                 }
                 else if (!user){
                     userObj = {
@@ -30,18 +30,18 @@ module.exports = {
                     let user = new User(userObj);
                     user.save((err,result)=>{
                         if(err) {
-                            return res.status(500).json({message:"Internal server error 😢"})
+                            return res.status(500).json({message:"Internal server error 😢",errorCode:500})
                         } else{
-                            return res.status(201).json({message:"User signup Successfully ✌️",result})                           
+                            return res.status(200).json({message:"User signup Successfully ✌️",result,errorCode:200})                           
                         }
                     })
                 }
                 else {
-                    return res.status(400).json({message:"User exist Already 😢"})
+                    return res.status(422).json({message:"User exist Already 😢",errorCode:422})
                 }
             })
         } catch (err) {
-            res.status(500).json({message:"Server error 🙏"});
+            res.status(500).json({message:"Server error 🙏",errorCode:500});
         }
     },
 
@@ -52,32 +52,33 @@ module.exports = {
             return res.status(400).json({
                 data: {},
                 errors: errors.array(),
-                message: 'Unable to login'
+                message: 'Unable to login',
+                errorCode:400
             });
         }
         try {
             const user = await User.findOne({email:req.body.email});
             if(!user){
-                res.status(400).json({message:"User Not Registered 😩"})
+                res.status(404).json({message:"User Not Registered 😩",errorCode:404})
             }
             const matchPassword = await bcrypt.compare(req.body.password,user.password);
             if(!matchPassword){
-                return res.status(422).json({message:"Incorrect email or password 😩"})
+                return res.status(422).json({message:"Incorrect email or password 😩",errorCode:422})
             }
             const token = jwt.sign(
                 { user: { id: user.id } },
                 'jwt_secret',
                 (err, token)=>{
                     if(err){
-                        res.status(500).json({message:"Internal server error 😢"})
+                        res.status(500).json({message:"Internal server error 😢",errorCode:500})
                     }
                     var data = {userData:user,token}
-                    return res.status(200).json({message:"User Logged in Successfully ✌️", data})
+                    return res.status(200).json({message:"User Logged in Successfully ✌️", data,errorCode:200})
                 }
             )
             res.cookie('c',token,{expire: new Date()+ 9999});
         } catch (err) {
-            res.status(500).json({message:"Server error 🙏"});           
+            res.status(500).json({message:"Server error 🙏",errorCode:400});           
         }
     },
 
@@ -172,6 +173,31 @@ module.exports = {
                         return res.status(400).json({message:"Internal error 2 😢"})
                     } else {
                         return res.status(200).json({message:"Successfully updated user details ✌️", result})
+                    }
+                })
+            })
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({message:"Server error 🙏"});      
+        }
+    },
+    cahngeProfilePic : async(req, res) => {
+        try {
+            const userId = req.user.id;
+            if(typeof req.file === 'undefined'){
+                res.status(404).json({message:"Profile pic not found 🙏"});      
+            }
+            await User.findByIdAndUpdate(userId).exec((err,data) => {               
+                if(err) {
+                    return res.status(400).json({message:"Internal error 1 😢"})
+                }
+                data.profilePic = req.file.filename;
+                data.save((err, result) => {
+                    if(err) {
+                        return res.status(400).json({message:"Internal error 2 😢"})
+                    } else {
+                        result.profilePic = "http://localhost:3000" + "/uploads/" +req.file.filename;
+                        return res.status(200).json({message:"Successfully updated user ProfilePic ✌️", result})
                     }
                 })
             })
