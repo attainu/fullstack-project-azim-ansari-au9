@@ -92,7 +92,7 @@ export class AddMutualFunds extends Component {
                     <div className="form-group">
                         <div className="col-xs-8 col-xs-offset-4">
                             <center>
-                                <button type="submit" className="btn btn-primary btn-lg">Create</button>
+                                <button type="submit" className="btn btn-primary btn-sm">Create</button>
                             </center>
                         </div>  
                     </div>		      

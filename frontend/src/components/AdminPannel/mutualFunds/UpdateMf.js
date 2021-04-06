@@ -59,7 +59,7 @@ const UpdateMf = (props) => {
                                 <li key={mf._id} className="row-md-6">Scheme Name:<span style={{color:'black',marginLeft:"36px"}}>{mf.Scheme_Name}</span> </li>
                                 <li key={mf._id} className="row-md-6">Scheme Type:<span style={{color:'black',marginLeft:"40px"}}>{mf.Scheme_Type} </span></li>
                             </ul> 
-                            <button className="btn btn-delete" type='submit'>Remove </button>
+                            <button className="btn btn-danger" type='submit'>Remove </button>
                         </form>
                 </div>
             </div>

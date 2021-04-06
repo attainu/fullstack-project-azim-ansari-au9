@@ -34,7 +34,7 @@ const UserProfile = () => {
                     <div className="col-md-4">
                         <div className="profile-img">
                             <img src={user.profilePic} alt="profilePic"/>
-                            <div className="file btn btn-lg btn-primary">
+                            <div className="file btn btn-sm btn-primary">
                                 Change Photo
                                 <input type="file" name="file" accept="images/*"/>
                             </div>

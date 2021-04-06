@@ -27,17 +27,24 @@ const HomePage = () => {
                     <div className="col" ><br/>
                     <div className="card" id="azim" style={{width:"18rem"}}>
                         <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 className="card-title">INVESTMENT OBJECTIVES</h5>
+                            <p className="card-text">INVESTMENT OBJECTIVES<br/> Mutual Fund investments are subject to market risks, read all scheme related documents carefully.</p><br /><br /><br />
                         </div>
                     </div>
                     </div>
                     <div className="col"><br/>
                         <div className="card" id="azim" style={{width:"18rem"}}>
                             <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
+                                <h5 className="card-title">INVESTMENT OBJECTIVES</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p className="card-text">INVESTMENT OBJECTIVES<br/> Mutual Fund investments are subject to market risks, read all scheme related documents carefully.</p><br /><br /><br />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col"><br/>
+                        <div className="card" id="azim" style={{width:"18rem"}}>
+                            <div className="card-body">
+                                <h5 className="card-title">About</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
@@ -45,17 +52,7 @@ const HomePage = () => {
                     <div className="col"><br/>
                         <div className="card" id="azim" style={{width:"18rem"}}>
                             <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
-                                <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col"><br/>
-                        <div className="card" id="azim" style={{width:"18rem"}}>
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
-                                <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <h5 className="card-title">Service </h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>

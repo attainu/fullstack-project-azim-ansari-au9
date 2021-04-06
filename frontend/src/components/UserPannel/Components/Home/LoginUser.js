@@ -18,7 +18,6 @@ const LoginUser = () => {
     const {email, password, loading, error, redirectToReferrer} = values;
 
     const handleChange = name =>event=> {
-        event.preventDefault();
         setValue({...values, error: false,[name]: event.target.value })
     };
     const clickSubmit = event =>{
@@ -58,7 +57,7 @@ const LoginUser = () => {
             <label className="checkbox">
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
             </label>
-            <button className="btn btn-lg btn-primary btn-block" type="submit" onClick={clickSubmit} >Login</button>   
+            <button className="btn btn-sm btn-primary btn-block" type="submit" onClick={clickSubmit} >Login</button>   
             </form>
         </div>
     );

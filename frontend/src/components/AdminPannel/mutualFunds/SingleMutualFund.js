@@ -58,14 +58,14 @@ const SingleMutualFund = (props) => {
         <div className="signup-form">
         <form className="form-horizontal" onSubmit={UpdateMfunds}>
         <ToastContainer position="bottom-right"
-autoClose={5000}
-hideProgressBar
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover/>
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover/>
                 <div className="col-xs-8 col-xs-offset-4">
                     <h2>Edit Mutual Funds</h2>
                 </div>		
@@ -108,7 +108,7 @@ pauseOnHover/>
                 <div className="form-group">
                     <div className="col-xs-8 col-xs-offset-4">
                         <center>
-                        <button type="submit" className="btn btn-primary btn-lg">Update</button>
+                        <button type="submit" className="btn btn-primary btn-sm btn-block">Update</button>
                         </center>
                     </div>  
                 </div>		      

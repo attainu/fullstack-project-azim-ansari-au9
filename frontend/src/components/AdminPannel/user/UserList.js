@@ -58,10 +58,10 @@ const UserList = () => {
                             <h5>Status</h5> 
                             <h6>{user.status}</h6>
                         </li> 
-                        <li key={user.id} className="col-sm-2"> 
+                        <li key={user.id} className="row-sm-2"> 
                             <h5>View Profile</h5>    
-                            <button type="button" className="row btn"><VisibilityIcon /> </button>
-                            <button type="button" className="btn"><EditIcon /> </button>
+                            <button type="btn" className="but"><VisibilityIcon /> </button>
+                            <button type="btn" className="but"><EditIcon /> </button>
                         </li> 
                     </div> 
                 </div> 

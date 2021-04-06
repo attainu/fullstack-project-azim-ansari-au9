@@ -99,7 +99,7 @@ const EditSingleUser = (props) => {
                         <div className="form-group">
                             <div className="col-xs-8 col-xs-offset-4">
                                 <center>
-                                    <button type="submit" className="btn btn-primary btn-lg">Update User</button>
+                                    <button type="submit" className="btn btn-primary btn-sm">Update User</button>
                                 </center>
                             </div>  
                         </div>		      

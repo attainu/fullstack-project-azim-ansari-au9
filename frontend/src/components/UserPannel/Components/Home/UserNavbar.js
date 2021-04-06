@@ -42,8 +42,8 @@ const UserNavbar = () => {
                 Admin
               </Link>
             </li>
-            {!isUserAuthenticated() && (
-              <div>
+            {!isUserAuthenticated()?(
+              <div className='row'>
                 <li className="nav-item">
                   <Link className="nav-link" to="/signup">
                     Signup
@@ -55,7 +55,7 @@ const UserNavbar = () => {
                   </Link>
                 </li>
               </div>
-            )} 
+            ) :
               <li className="nav-item" >
               <span className='nav-link'
               style={{cursor:"pointer",color:"white"}}
@@ -65,7 +65,7 @@ const UserNavbar = () => {
               >
                 logout
               </span>
-            </li>
+            </li>}
           </ul>
         </div>
       </nav>

@@ -15,6 +15,7 @@ import SignUp from './UserPannel/Components/Home/SignUp';
 import ErrorPage from './UserPannel/user/ErrorPage';
 import LoginUser from './UserPannel/Components/Home/LoginUser';
 import UserProfile from './UserPannel/Components/Home/UserProfile';
+import MutualFundsInvestment from './UserPannel/Components/InvestmentDetails/MutualFundsInvestment';
 
 const AdminRoutes =( ) => {
     return (
@@ -23,6 +24,7 @@ const AdminRoutes =( ) => {
                 <Route exact path='/' component={HomePage} />
                 <Route exact path='/mutualfunds' component={MutualFundsPage} />
                 <Route exact path='/calculator' component={EmiCalculator} />
+                <Route exact path='/investment/:id' component={MutualFundsInvestment} />
                 <Route exact path='/signup' component={SignUp} />
                 <Route exact path='/login' component={LoginUser} />
                 {/* <Route exact path='/about' component={About} /> */}

@@ -86,10 +86,10 @@ const SignUp = () => {
             <label className="checkbox">
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
             </label><br />
-            <button className="btn btn-lg btn-info "type="submit"  >Register</button> 
+            <button className="btn btn-sm btn-info "type="submit"  >Register</button> 
             <div>
                 <h5>Already a user please<Link to='/login'> 
-                <button>Login</button></Link></h5>    
+                <button style={{tabSize:"10px"}}>Login</button></Link></h5>    
             </div>  
             </form>
         </div>

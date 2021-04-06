@@ -32,7 +32,7 @@ const MutualFundsPage = () => {
     .map(mutualFunds=>{
         // console.log(mutualFunds._id)
         return(
-        <Link to={`/admin/updateMf/${mutualFunds._id}`}>
+        <Link to={`/investment/${mutualFunds._id}`}>
         <div className="row md-2">
             <div className="col-md-11">
                 <div className="offer offer-success">
