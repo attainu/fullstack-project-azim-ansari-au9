@@ -1,0 +1,25 @@
+.container1 {
+    background-color: antiquewhite;
+    padding: 20px
+}
+
+.heading {
+    margin: 35px;
+}
+
+.para {
+    margin-left: 40px;
+    font-size: large;
+}
+
+.img-gallery {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    margin-left: 10vw;
+    margin-top: 25px;
+}
+
+img {
+    margin: 15px
+}
